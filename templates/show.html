@@ -1,0 +1,26 @@
+<html>
+	<head>
+		<title>DM Show</title>
+	</head>
+	<body>
+		<h3><a href="/">Home</a></h3>
+		<div style="width:83%;margin:0px auto; padding:5px; margin-bottom:10px; background-color:#33FFAA;border-radius: 15px; ">
+			<form method="post" action="/show/">
+				{% csrf_token %}
+				{{ form.as_p }}
+				<div align="middle">
+					<input type="text" name="content" placeholder="Content" size="155" required>
+					<input type="submit" value="Submit" />
+				</div><br>
+			</form>
+		</div>
+		{% for h in hotel %}
+		<div style="width:90%; margin:0px auto; background-color:white; padding:20px;margin-bottom:10px; border-radius: 25px;" >
+			<h2>{{ hotel.name }}</h2>
+			<p><b>Rating: {{ h.rating }}</b></p>
+			<p><b>location: {{ h.state }}</b></p>
+			<p><b>Comment: <br><br>{% autoescape off %}{{ h.comment }}{% endautoescape %}</b><br><br></p>
+		</div>
+		{% endfor %}
+	</body>
+</html>
